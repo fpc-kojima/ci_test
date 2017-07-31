@@ -7,14 +7,16 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/php:7.1.5-browsers
-      
+      # - image: circleci/php:7.1.5-browsers
+      - image: notnoopci/php:7.1.5-browsers
+
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/mysql:9.4
 
-    working_directory: ~/repo
+    # working_directory: ~/repo
+    working_directory: ~/laravel
 
     steps:
       - checkout
@@ -28,10 +30,50 @@ jobs:
 
       - run: composer install -n --prefer-dist
 
+      # Debug Composer Require
+      - run: composer require nesbot/carbon
+      - run: composer require fzaninotto/faker
+      - run: composer require guzzlehttp/guzzle
+      - run: composer require aws/aws-sdk-php
+      - run: composer require google/apiclient
+      - run: composer require sendgrid/sendgrid
+      - run: composer require laravelcollective/html
+
       - save_cache:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-        
-      # run tests!
-      - run: phpunit
+
+      - run: cd /home/circleci/laravel
+      - run: php artisan config:clear
+      - run: php artisan key:generate
+      - run: ./vendor/bin/phpunit
+  test:
+    docker:
+      - image: notnoopci/php:7.1.5-browsers
+    steps:
+      - checkout
+      - run: echo test
+      - run: cd /home/circleci/laravel
+      - run: php artisan config:clear
+      - run: php artisan key:generate
+      - run: ./vendor/bin/phpunit
+  deploy:
+    machine: True
+    steps:
+      - run: echo deploy
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
+
