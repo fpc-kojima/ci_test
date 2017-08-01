@@ -22,6 +22,7 @@ jobs:
           #- MYSQL_DATABASE=circle_test
           #- MYSQL_HOST=localhost
           #- MYSQL_ROOT_HOST=%
+          - MYSQL_ROOT_HOST=%
           - MYSQL_ALLOW_EMPTY_PASSWORD=yes
           - MYSQL_ROOT_HOST=%
 
