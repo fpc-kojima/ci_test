@@ -18,7 +18,7 @@ jobs:
         environment:
           - MYSQL_USER=root
           - MYSQL_PASSWORD=
-          - MYSQL_ALLOW_EMPTY_PASSWORD=true
+          - MYSQL_ALLOW_EMPTY_PASSWORD=yes
           - MYSQL_DATABASE=circle_test
           - MYSQL_HOST=127.0.0.1
           - MYSQL_ROOT_HOST=%
