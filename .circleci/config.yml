@@ -56,7 +56,7 @@ jobs:
       - run: cd /home/circleci/laravel
       - run: php artisan config:clear
       - run: php artisan key:generate
-      - run: ./vendor/bin/phpunit
+      #- run: ./vendor/bin/phpunit
   test:
     docker:
       - image: notnoopci/php:7.1.5-browsers
