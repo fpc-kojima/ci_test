@@ -16,10 +16,12 @@ jobs:
       # - image: circleci/mysql:9.4
       - image: circleci/mysql:5.7
         environment:
-          - MYSQL_USER=ubuntu
-          - MYSQL_PASSWORD=
-          - MYSQL_ALLOW_EMPTY_PASSWORD=true
-          - MYSQL_DATABASE=circle_test
+          # - MYSQL_USER=ubuntu
+          # - MYSQL_PASSWORD=
+          # - MYSQL_ALLOW_EMPTY_PASSWORD=true
+          # - MYSQL_DATABASE=circle_test
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_ROOT_HOST: '%'
 
     # working_directory: ~/repo
     working_directory: ~/laravel
