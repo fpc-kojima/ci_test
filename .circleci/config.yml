@@ -20,8 +20,8 @@ jobs:
           # - MYSQL_PASSWORD=
           # - MYSQL_ALLOW_EMPTY_PASSWORD=true
           # - MYSQL_DATABASE=circle_test
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-          MYSQL_ROOT_HOST: '%'
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          - MYSQL_ROOT_HOST: '%'
 
     # working_directory: ~/repo
     working_directory: ~/laravel
