@@ -14,8 +14,8 @@ class CiExampleTest extends TestCase
         parent::setUp();
 
         //artisanコマンドの実行
-        \Artisan::call('migrate:refresh');
-        \Artisan::call('db:seed');
+        //\Artisan::call('migrate:refresh');
+        //\Artisan::call('db:seed');
     }
 
     /**
